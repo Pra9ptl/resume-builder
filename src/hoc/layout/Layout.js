@@ -1,6 +1,6 @@
 import React from 'react';
 import './Layout.css';
-import Input from '../../components/UI/inputFields/inputFields';
+import ComponentHolder from '../../containers/ComponentCardHolder/ComponentCardHolder';
 
 const Layout = () => {
     return (
@@ -10,10 +10,10 @@ const Layout = () => {
             </div>
             <div className="main">
                 <div className="sideBar">
-                    <Input label="First Name" value="" />
+                    <ComponentHolder />
                 </div>
                 <div className="display">
-                    display body
+
                 </div>
             </div>
         </div>
