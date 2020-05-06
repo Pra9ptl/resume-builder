@@ -1,5 +1,6 @@
 import React from 'react';
 import './Layout.css';
+import Input from '../../components/UI/inputFields/inputFields';
 
 const Layout = () => {
     return (
@@ -9,7 +10,7 @@ const Layout = () => {
             </div>
             <div className="main">
                 <div className="sideBar">
-                    SideBar
+                    <Input label="First Name" value="" />
                 </div>
                 <div className="display">
                     display body
