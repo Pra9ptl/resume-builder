@@ -1,6 +1,7 @@
 import React from 'react';
 import './Layout.css';
-import ComponentHolder from '../../containers/ComponentCardHolder/ComponentCardHolder';
+import ExpansionPanel from '../ExpansionPanel/ExpansionPanel';
+import PersonalInformation from '../../components/PersonalInformation/personalInformation';
 
 const Layout = () => {
     return (
@@ -10,7 +11,9 @@ const Layout = () => {
             </div>
             <div className="main">
                 <div className="sideBar">
-                    <ComponentHolder />
+                    <ExpansionPanel title="Personal Information" >
+                        <PersonalInformation />
+                    </ExpansionPanel>
                 </div>
                 <div className="display">
 

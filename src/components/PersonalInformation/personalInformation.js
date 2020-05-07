@@ -13,6 +13,7 @@ const inputField = React.memo(props => {
             <TextField
                 className="inputTextField"
                 id="outlined-basic"
+                type="email"
                 label="Email Id"
                 variant="outlined" />
             <TextField
