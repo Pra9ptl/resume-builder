@@ -8,6 +8,7 @@ import Skills from '../../components/Sections/Skills/Skills';
 import ProfessionalExp from '../../components/Sections/ProfessionalExp/ProfessionalExp';
 import Project from '../../components/Sections/Project/Project';
 import Achievements from '../../components/Sections/Achievement/Achievement';
+import Hobbies from '../../components/Sections/Hobbies/Hobbies';
 
 const Layout = () => {
     const panelList = [
@@ -48,6 +49,9 @@ const Layout = () => {
                                 break;
                             case "Achievements":
                                 loadingCompoennt = <Achievements />;
+                                break;
+                            case "Intereset and Hobbies":
+                                loadingCompoennt = <Hobbies />;
                                 break;
                             default:
                                 break;
