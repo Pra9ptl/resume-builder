@@ -1,12 +1,13 @@
 import React from 'react';
 import './Layout.css';
 import ExpansionPanel from '../ExpansionPanel/ExpansionPanel';
+import Box from '@material-ui/core/Box';
 import PersonalInformation from '../../components/Sections/PersonalInformation/PersonalInformation';
 import Education from '../../components/Sections/Education/Education';
 import Skills from '../../components/Sections/Skills/Skills';
-import Box from '@material-ui/core/Box';
 import ProfessionalExp from '../../components/Sections/ProfessionalExp/ProfessionalExp';
 import Project from '../../components/Sections/Project/Project';
+import Achievements from '../../components/Sections/Achievement/Achievement';
 
 const Layout = () => {
     const panelList = [
@@ -15,7 +16,6 @@ const Layout = () => {
         "Skills",
         "Professional experience/ Internships",
         "Project",
-        "Positional Experience",
         "Achievements",
         "Intereset and Hobbies"
     ];
@@ -45,6 +45,9 @@ const Layout = () => {
                                 break;
                             case "Project":
                                 loadingCompoennt = <Project />;
+                                break;
+                            case "Achievements":
+                                loadingCompoennt = <Achievements />;
                                 break;
                             default:
                                 break;
