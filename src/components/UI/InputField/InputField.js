@@ -5,10 +5,11 @@ import './InputField.css';
 const inputField = React.memo(props => {
     return (
         <TextField
+        variant="outlined"
             label={props.label}
             type={props.type}
             className="inputField"
-            defaultValue={props.default}
+            placeholder={props.default}
             InputLabelProps={{
                 shrink: true,
             }}
