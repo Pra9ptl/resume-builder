@@ -1,21 +1,18 @@
-import React from 'react';
-import IconButton from "@material-ui/core/IconButton";
-import AddIcon from "@material-ui/icons/Add";
+import React, { useState } from 'react';
 import EducationItem from './EducationItem/EducationItem';
+import Button from '../../UI/Button/Button';
 
 const education = React.memo(props => {
-    let degItems = [];
+    const [inputList, setInputList] = useState([]);
 
     const addEducationItemHandler = () => {
-        degItems.push("Item");
+        setInputList(inputList.concat(<EducationItem count={inputList.length + 1} key={inputList.length + 1} />));
     };
 
     return (
         <div>
-            <EducationItem />
-            <IconButton onClick={addEducationItemHandler}>
-                <AddIcon style={{ color: "#27AE60" }} />
-            </IconButton>
+            {inputList}
+            <Button clicked={addEducationItemHandler} type="add" />
         </div>
     );
 });
