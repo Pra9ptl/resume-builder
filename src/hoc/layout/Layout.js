@@ -6,6 +6,7 @@ import Education from '../../components/Sections/Education/Education';
 import Skills from '../../components/Sections/Skills/Skills';
 import Box from '@material-ui/core/Box';
 import ProfessionalExp from '../../components/Sections/ProfessionalExp/ProfessionalExp';
+import Project from '../../components/Sections/Project/Project';
 
 const Layout = () => {
     const panelList = [
@@ -13,7 +14,7 @@ const Layout = () => {
         "Education",
         "Skills",
         "Professional experience/ Internships",
-        "Work",
+        "Project",
         "Positional Experience",
         "Achievements",
         "Intereset and Hobbies"
@@ -41,6 +42,9 @@ const Layout = () => {
                                 break;
                             case "Professional experience/ Internships":
                                 loadingCompoennt = <ProfessionalExp />;
+                                break;
+                            case "Project":
+                                loadingCompoennt = <Project />;
                                 break;
                             default:
                                 break;
