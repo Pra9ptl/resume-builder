@@ -1,7 +1,13 @@
 .ExpansionPanel {
+    width: 100%;
     margin: 5px;
 }
 
 .ExpansionPanel:hover {
     background-color: #EAECEE !important;
+}
+
+.ExpansionPanelDetails {
+    display: block !important;
+    margin: 2px auto;
 }

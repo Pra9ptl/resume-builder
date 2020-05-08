@@ -11,22 +11,24 @@ const EducationItem = React.memo(props => {
         ["3", "ENDING YEAR", "number", "2021"],
         ["4", "GPA/AGGREGATE", "number", "4"]
     ];
-    let fields = [];
 
-    fields.push(fieldList.map(field => {
-        return <InputField
-            type={field[2]}
-            label={field[1]}
-            default={field[3]}
-            key={field[0]}
-            {...props} />;
-    }));
-    fields.push(<Button />);
-    return (
-        <ExpansionPanel>
-            {fields}
-        </ExpansionPanel>
-    );
+    const renderFields = fieldList.map(field => 
+            <div key={field[0]}>
+                <InputField
+                    id={field[0]}
+                    type={field[2]}
+                    label={field[1]}
+                    default={field[3]}
+                />
+            </div>
+        );
+
+return (
+    <ExpansionPanel title="Degree #1">
+        {renderFields}
+        <Button label="Remove" />
+    </ExpansionPanel>
+);
 });
 
 export default EducationItem;

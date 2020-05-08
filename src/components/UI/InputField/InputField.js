@@ -5,7 +5,6 @@ import './InputField.css';
 const inputField = React.memo(props => {
     return (
         <TextField
-            id="date"
             label={props.label}
             type={props.type}
             className="inputField"

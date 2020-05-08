@@ -10,7 +10,7 @@ const inputField = React.memo(props => {
             className="button"
             startIcon={<DeleteIcon />}
         >
-            Delete
+            {props.label}
         </Button>
     );
 });
