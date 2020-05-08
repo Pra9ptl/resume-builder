@@ -11,9 +11,7 @@ const education = React.memo(props => {
 
     return (
         <div>
-            {degItems.length !==0 && degItems.map((deg, index) => {
-                return <p key={index}>{deg}</p>;
-            })} 
+            <EducationItem />
             <IconButton onClick={addEducationItemHandler}>
                 <AddIcon style={{ color: "#27AE60" }} />
             </IconButton>

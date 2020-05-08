@@ -3,7 +3,8 @@ import './Layout.css';
 import ExpansionPanel from '../ExpansionPanel/ExpansionPanel';
 import PersonalInformation from '../../components/Sections/PersonalInformation/PersonalInformation';
 import Education from '../../components/Sections/Education/Education';
-
+import Skills from '../../components/Sections/Skills/Skills';
+import Box from '@material-ui/core/Box';
 
 const Layout = () => {
     const panelList = [
@@ -19,41 +20,38 @@ const Layout = () => {
     return (
         <div className="Layout">
             <div className="menu">
-                Nav
+                <nav>
+                    dfsjhjkdsfh
+                </nav>
             </div>
-            <div className="main">
-                <div className="sideBar">
+            <Box className="main">
+                <Box className="sideBar">
                     {panelList.map(panel => {
                         let loadingCompoennt = '';
                         switch (panel) {
                             case "Personal Information":
-                                loadingCompoennt = (
-                                    <ExpansionPanel title={panel} key={panel}>
-                                        <PersonalInformation />
-                                    </ExpansionPanel>
-                                );
+                                loadingCompoennt = <PersonalInformation />;
                                 break;
                             case "Education":
-                                loadingCompoennt = (
-                                    <ExpansionPanel title={panel} key={panel}>
-                                        <Education />
-                                    </ExpansionPanel>
-                                );
+                                loadingCompoennt = <Education />;
+                                break;
+                            case "Skills":
+                                loadingCompoennt = <Skills />;
                                 break;
                             default:
                                 break;
                         }
                         return (
-                            <div>
+                            <ExpansionPanel title={panel} key={panel}>
                                 {loadingCompoennt}
-                            </div>
+                            </ExpansionPanel>
                         );
                     })}
-                </div>
-                <div className="display">
+                </Box>
+                <Box className="display">
 
-                </div>
-            </div>
+                </Box>
+            </Box>
         </div >
     );
 };
