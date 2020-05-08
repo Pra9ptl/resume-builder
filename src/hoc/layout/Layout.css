@@ -1,23 +1,26 @@
 .Layout {
+    position: fixed;
     width: 100%;
     height: 100%;
 }
 
 .menu {
-    position: relative;
     width: 100%;
-    height: 10%;
-    display: flex;
+    height: 8%;
 }
 
 nav {
-    flex: 1;
     padding: 5px;
-    border: 1px solid;
+}
+
+.horizontalSeparator {
+    position: relative;
+    width: 100% !important;
+    height: 2px !important;
+    margin: 3px auto !important;
 }
 
 .main {
-    position: relative;
     width: 100%;
     height: 90%;
     flex: 1;
@@ -28,12 +31,16 @@ nav {
     width: 30%;
     height: 100% !important;
     padding: 5px;
-    border: 1px solid;
+}
+
+.verticalSeparator {
+    width: 2% !important;
+    height: 100% !important;
+    margin: 0 8px !important;
 }
 
 .display {
-    width: 70%;
+    width: 68%;
     height: 100% !important;
     padding: 5px;
-    border: 1px solid;
 }

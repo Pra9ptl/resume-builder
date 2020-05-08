@@ -1,7 +1,7 @@
 import React from 'react';
 import './Layout.css';
 import ExpansionPanel from '../ExpansionPanel/ExpansionPanel';
-import Box from '@material-ui/core/Box';
+import { Divider } from '@material-ui/core';
 import PersonalInformation from '../../components/Sections/PersonalInformation/PersonalInformation';
 import Education from '../../components/Sections/Education/Education';
 import Skills from '../../components/Sections/Skills/Skills';
@@ -27,8 +27,11 @@ const Layout = () => {
                     dfsjhjkdsfh
                 </nav>
             </div>
-            <Box className="main">
-                <Box className="sideBar">
+            <div>
+                <Divider orientation="horizontal" className="horizontalSeparator" flexItem />
+            </div>
+            <div className="main">
+                <div className="sideBar">
                     {panelList.map(panel => {
                         let loadingCompoennt = '';
                         switch (panel) {
@@ -62,11 +65,14 @@ const Layout = () => {
                             </ExpansionPanel>
                         );
                     })}
-                </Box>
-                <Box className="display">
-
-                </Box>
-            </Box>
+                </div>
+                <div>
+                    <Divider orientation="vertical" className="verticalSeparator" flexItem />
+                </div>
+                <div className="display">
+                    Hello World!!
+                </div>
+            </div>
         </div >
     );
 };
