@@ -1,23 +1,74 @@
-import React, { useState } from 'react';
-import Button from '../../UI/Button/Button';
-import InputField from '../../UI/InputField/InputField';
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import Button from "../../UI/Button/Button";
+import InputField from "../../UI/InputField/InputField";
 
-const achievement = React.memo(props => {
-    const [achievementsList, setAchievementsList] = useState([]);
+const Achievement = props => {
+  const achieve = useSelector(state => state.achievement);
 
-    const addAchievementHandler = () => {
-        const fieldCnt = achievementsList.length + 1;
-        setAchievementsList(achievementsList.concat(
-            <InputField type="text" label={"Achievement #" + fieldCnt} default="Achievement Title" key={achievementsList.length + 1} {...props} />
-        ));
-    };
+  const [achievementState, setAchievementState] = useState([]);
+  useEffect(
+    () => {
+      setAchievementState(achieve);
+    },
+    [achieve]
+  );
 
-    return (
-        <div>
-            {achievementsList}
-            <Button clicked={addAchievementHandler} type="add" />
-        </div>
-    );
-});
+  const dispatch = useDispatch();
 
-export default achievement;
+  const addAchievementItemHandler = () => {
+    dispatch({
+      type: "ADD_ACHIEVEMENT",
+      payload: {
+        achievementId: "Achievement-" + (achieve.length + 1),
+        achievementTitle: ""
+      }
+    });
+  };
+
+  const updateAchievement = (ach, value) => {
+    const newAchievement = [...achievementState];
+    newAchievement.forEach(a => {
+      if (a.achievementId === ach.achievementId) {
+        a.achievementTitle = value;
+      }
+    });
+
+    setAchievementState(newAchievement);
+  };
+
+  const saveAchievement = a => {
+    dispatch({
+      type: "UPDATE_ACHIEVEMENT",
+      payload: a
+    });
+  };
+
+  return (
+    <div>
+
+      {Boolean(achievementState) &&
+        achievementState.map(a => {
+          return (
+            <InputField
+              type="text"
+              label={a.achievementId}
+              key={a.achievementId}
+              value={a.achievementTitle}
+              onChange={event => {
+                updateAchievement(a, event.target.value);
+                saveAchievement(a);
+              }}
+              {...props}
+            />
+          );
+        })}
+
+      {achievementState.filter(a => Boolean(a.achievementTitle)).length ===
+        achievementState.length &&
+        <Button clicked={addAchievementItemHandler} type="add" />}
+    </div>
+  );
+};
+
+export default Achievement;

@@ -1,0 +1,29 @@
+.item {
+  width: 100%;
+  padding: 10px;
+  font-size: medium;
+}
+
+.labelTitle {
+  font-weight: bold;
+}
+
+.rowFlex {
+  display: flex;
+}
+
+.labelCollege {
+  flex: 1;
+}
+
+.labelYears {
+  text-align: right;
+  flex: .25;
+}
+
+.labelLearning {
+  text-align: justify;
+  font-weight: lighter;
+  padding: 5px 25px;
+  white-space: pre-wrap;
+}

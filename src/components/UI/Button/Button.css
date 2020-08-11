@@ -1,0 +1,8 @@
+.button {
+    width: 50% !important;
+    height: 100%;
+    padding: 5px;
+    margin: auto !important;
+    text-decoration: none !important;
+    font-weight: unset !important;
+}

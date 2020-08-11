@@ -1,0 +1,74 @@
+.area {
+  width: 100%;
+  padding: 4% 0;
+  background-color: #fff;
+  justify-self: center;
+  font-family: Calibri, sans-serif !important;
+}
+
+.secTitle {
+  font-weight: bolder;
+  font-size: 16px;
+  padding-bottom: 5px;
+  border-bottom: 1.5px solid #9e9e9e;
+}
+
+.section {
+  margin: 10px 50px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  font-size: 16px;
+  text-align: left;
+}
+
+.sectionContent {
+  padding-top: 20px;
+}
+
+a {
+  text-decoration: none;
+  font-size: 16px;
+  color: #000;
+}
+
+.labelTitle {
+  font-weight: bold;
+  padding: 5px 0;
+}
+
+.labelValue {
+  font-weight: lighter;
+  padding: 3px 30px;
+  white-space: pre-wrap;
+}
+
+.page {
+  flex-direction: 'row';
+  background-color: '#E4E4E4';
+}
+
+.pageSection {
+  margin: 5;
+  padding: 5;
+  flex-grow: 1;
+}
+
+.printSection {
+  margin: 8px;
+  padding: 10px;
+}
+
+.printButton {
+  color: #b71c1c;
+  margin: 8px;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: #ffebee;
+  font-size: 20px;
+  vertical-align: sub;
+}
+
+.printButton:hover{
+    background-color: #ef9a9a;
+}

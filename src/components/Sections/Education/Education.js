@@ -1,20 +1,35 @@
-import React, { useState } from 'react';
-import EducationItem from './EducationItem/EducationItem';
-import Button from '../../UI/Button/Button';
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import EducationItem from "./EducationItem/EducationItem";
+import Button from "../../UI/Button/Button";
 
-const education = React.memo(props => {
-    const [inputList, setInputList] = useState([]);
+const Education = () => {
+  const edu = useSelector(state => state.education);
 
-    const addEducationItemHandler = () => {
-        setInputList(inputList.concat(<EducationItem count={inputList.length + 1} key={inputList.length + 1} />));
-    };
+  const dispatch = useDispatch();
 
-    return (
-        <div>
-            {inputList}
-            <Button clicked={addEducationItemHandler} type="add" />
-        </div>
-    );
-});
+  const addEducationItemHandler = () => {
+    dispatch({
+      type: "ADD_EDUCATION_LIST",
+      payload: { deg_id: "degree#" + (edu.length + 1) }
+    });
+  };
 
-export default education;
+  return (
+    <div>
+      {Boolean(edu) &&
+        edu.map(education => {
+          return (
+            <EducationItem
+              title={education.deg_id}
+              key={education.deg_id}
+              eduDetails={education}
+            />
+          );
+        })}
+      {edu.filter(education => Boolean(education.degreeTitle)).length ===
+        edu.length && <Button clicked={addEducationItemHandler} type="add" />}
+    </div>
+  );
+};
+export default Education;

@@ -1,20 +1,36 @@
-import React, { useState } from 'react';
-import Button from '../../UI/Button/Button';
-import ExpItem from './ExpItem/ExpItem';
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import ExpItem from "./ExpItem/ExpItem";
+import Button from "../../UI/Button/Button";
 
-const professionalExp = React.memo(props => {
-    const [internshipList, setInternshipList] = useState([]);
+const ProfessionalExp = () => {
+  const proExp = useSelector(state => state.experience);
 
-    const addEducationItemHandler = () => {
-        setInternshipList(internshipList.concat(<ExpItem count={internshipList.length + 1} key={internshipList.length + 1} />));
-    };
+  const dispatch = useDispatch();
 
-    return (
-        <div>
-            {internshipList}
-            <Button clicked={addEducationItemHandler} type="add" />
-        </div>
-    );
-});
+  const addExperienceItemHandler = () => {
+    dispatch({
+      type: "ADD_EXPERIENCE_LIST",
+      payload: { expId: "Experience-" + (proExp.length + 1) }
+    });
+  };
+  
+  return (
+    <div>
+      {Boolean(proExp) &&
+        proExp.map(pE => {
+          return (
+            <ExpItem
+              title={pE.expId}
+              key={pE.expId}
+              expDetails={pE}
+            />
+          );
+        })}
+      {proExp.filter(pE => Boolean(pE.companyName)).length === proExp.length &&
+        <Button clicked={addExperienceItemHandler} type="add" />}
+    </div>
+  );
+};
 
-export default professionalExp;
+export default ProfessionalExp;

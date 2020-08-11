@@ -1,46 +1,71 @@
 .Layout {
-    position: fixed;
-    width: 100%;
-    height: 100%;
+  position: fixed;
+  width: 100%;
+  height: 100%;
 }
 
 .menu {
-    width: 100%;
-    height: 8%;
+  width: 100%;
+  height: 9%;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  margin-bottom: 5px;
 }
 
-nav {
-    padding: 5px;
+.nav {
+  height: 100%;
+  background-color: #49b2e5 !important;
+  margin-bottom: 3px;
+  margin-left: 3px;
+  margin-right: 5px;
+  border-radius: 8px;
 }
 
-.horizontalSeparator {
-    position: relative;
-    width: 100% !important;
-    height: 2px !important;
-    margin: 3px auto !important;
+.logo{
+    height: 100%;
+    width: 8%;
+    float: left;
+}
+
+.user{
+    flex: 1;
+    height: 100% !important;
+    width: 5% !important;
+    color: #e0e0e0;
+    flex-wrap: wrap;
+    display: flex;
+    font-size: 1.8vw;
+    float: right;
+}
+
+.user:hover{
+    color: #212121;
 }
 
 .main {
-    width: 100%;
-    height: 90%;
-    flex: 1;
-    display: flex;
+  width: 100%;
+  height: 90%;
+  display: flex;
 }
 
 .sideBar {
-    width: 30%;
-    height: 100% !important;
-    padding: 5px;
-}
-
-.verticalSeparator {
-    width: 2% !important;
-    height: 100% !important;
-    margin: 0 8px !important;
+  width: 30%;
+  height: 99% !important;
+  padding-right: 8px !important;
+  margin-left: 5px;
+  margin-right: 2.5px;
+  background-color: #eceff1;
+  border-radius: 8px;
+  overflow: auto;
 }
 
 .display {
-    width: 68%;
-    height: 100% !important;
-    padding: 5px;
+  width: 69%;
+  height: 96% !important;
+  border-radius: 8px;
+  padding: 10px;
+  margin-right: 5px;
+  margin-left: 2.5px;
+  overflow-y: auto;
+  background-color: #efebe9;
 }

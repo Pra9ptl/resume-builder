@@ -1,13 +1,14 @@
 .ExpansionPanel {
-    width: 100%;
-    margin: 5px;
+  width: 98%;
+  margin: .5vw;
+  justify-self: center;
 }
 
-.ExpansionPanel:hover {
+/* .ExpansionPanel:hover {
     background-color: #EAECEE !important;
-}
+} */
 
 .ExpansionPanelDetails {
-    display: block !important;
-    margin: 2px auto;
+  display: block !important;
+  margin: 2px auto;
 }

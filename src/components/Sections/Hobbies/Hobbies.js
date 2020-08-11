@@ -1,23 +1,76 @@
-import React, { useState } from 'react';
-import Button from '../../UI/Button/Button';
-import InputField from '../../UI/InputField/InputField';
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import Button from "../../UI/Button/Button";
+import InputField from "../../UI/InputField/InputField";
 
-const hobbies = React.memo(props => {
-    const [hobbiesList, setHobbiesList] = useState([]);
+const Hobbies = props => {
+  const hob = useSelector(state => state.hobbies);
 
-    const addHobbiesHandler = () => {
-        const fieldCnt = hobbiesList.length + 1;
-        setHobbiesList(hobbiesList.concat(
-            <InputField type="text" label={"Hobbies #" + fieldCnt} default="Hobbies/Interests" key={hobbiesList.length + 1} {...props} />
-        ));
-    };
+  const [hobbyState, setHobbyState] = useState([]);
+  useEffect(
+    () => {
+      setHobbyState(hob);
+    },
+    [hob]
+  );
 
-    return (
-        <div>
-            {hobbiesList}
-            <Button clicked={addHobbiesHandler} type="add" />
-        </div>
-    );
-});
+  const dispatch = useDispatch();
 
-export default hobbies;
+  const addHobbiesItemHandler = () => {
+    dispatch({
+      type: "ADD_HOBBIES",
+      payload: {
+        hobbyId: "Hobby-" + (hob.length + 1),
+        hobbyName: ""
+      }
+    });
+  };
+
+  const updateHobbies = (hob, value) => {
+    const newHobbies = [...hobbyState];
+    newHobbies.forEach(h => {
+      console.log(hob);
+      console.log(h);
+      if (h.hobbyId === hob.hobbyId) {
+        //   h.hobbyId = hob.hobbyName;
+        h.hobbyName = value;
+      }
+    });
+
+    setHobbyState(newHobbies);
+  };
+
+  const saveHobby = h => {
+    dispatch({
+      type: "UPDATE_HOBBIES",
+      payload: h
+    });
+  };
+
+  return (
+    <div>
+      {Boolean(hobbyState) &&
+        hobbyState.map(h => {
+          console.log(h);
+          return (
+            <InputField
+              type="text"
+              label={h.hobbyId}
+              key={h.hobbyId}
+              value={h.hobbyName}
+              onChange={event => {
+                updateHobbies(h, event.target.value);
+                saveHobby(h);
+              }}
+              {...props}
+            />
+          );
+        })}
+      {hobbyState.filter(h => Boolean(h.hobbyName)).length ===
+        hobbyState.length &&
+        <Button clicked={addHobbiesItemHandler} type="add" />}
+    </div>
+  );
+};
+
+export default Hobbies;

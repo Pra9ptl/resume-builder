@@ -1,20 +1,18 @@
-import React from 'react';
-import TextField from '@material-ui/core/TextField';
-import './InputField.css';
+import React from "react";
+import TextField from "@material-ui/core/TextField";
+import "./InputField.css";
 
-const inputField = React.memo(props => {
-    return (
-        <TextField
-        variant="outlined"
-            label={props.label}
-            type={props.type}
-            className="inputField"
-            placeholder={props.default}
-            InputLabelProps={{
-                shrink: true,
-            }}
-        />
-    );
-});
+const InputField = props => {
+  return (
+    <TextField
+      variant="standard"
+      label={props.label}
+      type={props.type}
+      {...props}
+      value={props.value}
+      className="inputField"
+    />
+  );
+};
 
-export default inputField;
+export default InputField;
