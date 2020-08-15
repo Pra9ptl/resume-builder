@@ -1,4 +1,9 @@
 const initialState = {
+  signedIn: {
+    isSignedIn: false,
+    email: ""
+  },
+
   personalInfo: {
     fullname: "",
     email: "",
@@ -31,6 +36,15 @@ const initialState = {
 
 const resumeReducer = (state = initialState, action) => {
   switch (action.type) {
+    case "UPDATE_SIGNED_IN_STATUS":
+      return {
+        ...state,
+        signedIn: {
+            ...state.signedIn,
+          [action.payload.field]: action.payload.value
+        }
+      };
+
     case "UPDATE_PERSONAL_INFO":
       return {
         ...state,

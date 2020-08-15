@@ -11,8 +11,10 @@ import Hobbies from "../../components/Sections/Hobbies/Hobbies";
 import DisplayPage from "../DisplayPage/DisplayPage";
 import { ReactComponent as Logo } from "../../assets/logo.svg";
 import Button from "../../components/UI/Button/Button";
+import { useSelector } from "react-redux";
 
 const Layout = () => {
+  const user = useSelector(state => state.signedIn.email);
   const panelList = [
     "Personal Information",
     "Online Contact Links",
@@ -28,7 +30,19 @@ const Layout = () => {
         <div className="nav">
           <Logo className="logo" />
           <div className="user">
-            <Button type="person" />
+            <div className="dropdown" style={{ float: "right" }}>
+              <Button type="person" />
+              <div className="dropdown-content">
+                <div className="dropDownItems">
+                  <div>
+                    {user}
+                  </div>
+                </div>
+                <div className="dropDownItems">
+                  <Button type="signOut" />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

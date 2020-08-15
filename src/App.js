@@ -1,13 +1,19 @@
-import React from 'react';
-import './App.css';
-import Layout from './hoc/layout/Layout';
+import React from "react";
+import { useSelector } from "react-redux";
+import "./App.css";
+import Layout from "./hoc/layout/Layout";
+import Login from "./components/Login/Login";
 
 function App() {
-  return (
-    <div className="App">
-      <Layout />
-    </div>
-  );
+  const login = useSelector(state => state.signedIn);
+
+  return login.isSignedIn
+    ? <div className="App">
+        <Layout />
+      </div>
+    : <div className="App">
+        <Login />
+      </div>;
 }
 
 export default App;

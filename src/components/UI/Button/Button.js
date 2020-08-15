@@ -4,39 +4,73 @@ import AddIcon from "@material-ui/icons/Add";
 import DeleteIcon from "@material-ui/icons/Delete";
 import SaveIcon from "@material-ui/icons/Save";
 import User from "@material-ui/icons/PersonRounded";
+import Pdf from "@material-ui/icons/PictureAsPdf";
+import Save from "@material-ui/icons/CloudUpload";
+import Signout from "@material-ui/icons/LocalGasStation";
 import "./Button.css";
 
 const inputField = React.memo(props => {
   let btnTpye = "";
   let btnColor = "";
   let btnText = "";
-  let btnSize = "";
 
   switch (props.type) {
     case "add":
       btnText = "Add";
       btnColor = "primary";
-      btnTpye = <AddIcon />;
+      btnTpye = <AddIcon style={{ padding: "10px !important" }} />;
       break;
     case "delete":
       btnText = "Delete";
       btnColor = "delete";
-      btnTpye = <DeleteIcon />;
+      btnTpye = <DeleteIcon style={{ padding: "10px !important" }} />;
       break;
     case "save":
       btnText = "Save";
       btnColor = "Secondary";
-      btnTpye = <SaveIcon />;
+      btnTpye = <SaveIcon style={{ padding: "10px !important" }} />;
+      break;
+    case "signOut":
+      btnText = "Sign-out";
+      btnColor = "delete";
+      btnTpye = <Signout />;
+      break;
+    case "pdf":
+      btnText = "Download PDF";
+      btnColor = "Secondary";
+      btnTpye = <Pdf style={{ padding: "10px !important" }} />;
+      break;
+    case "cloud":
+      btnText = "Save to Cloud";
+      btnColor = "primary";
+      btnTpye = <Save style={{ padding: "10px !important" }} />;
       break;
     case "person":
-      btnTpye = <User style={{ fontSize: 40, color: "#e0e0e0" }} />;
+      btnColor = "primary";
+      btnTpye = (
+        <User
+          style={{
+            backgroundColor: "#4CAF50",
+            color: "white",
+            padding: "20px !important",
+            fontSize: "40",
+            border: "none",
+            cursor: "pointer"
+          }}
+        />
+      );
       break;
     default:
       break;
   }
 
   return (
-    <Button onClick={props.clicked} color={btnColor} className="button">
+    <Button
+      onClick={props.clicked}
+      color={btnColor}
+      className="button"
+      {...props}
+    >
       {btnTpye} {btnText}
     </Button>
   );

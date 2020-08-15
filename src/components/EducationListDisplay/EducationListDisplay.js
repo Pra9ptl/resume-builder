@@ -21,11 +21,13 @@ const EducationListDisplay = props => {
       </div>
       {Boolean(props.learnings) &&
         <div className="labelLearning">
-          {props.learnings.split('\n').map((text, index) => (
-          <React.Fragment key={`${text}-${index}`}>
-            <li>{text}</li>
-          </React.Fragment>
-          ))}
+          {props.learnings.split("\n").map((text, index) =>
+            <React.Fragment key={`${text}-${index}`}>
+              <li>
+                {text}
+              </li>
+            </React.Fragment>
+          )}
         </div>}
     </div>
   );

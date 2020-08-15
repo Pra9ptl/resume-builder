@@ -7,16 +7,15 @@ import GitHub from "@material-ui/icons/GitHub";
 import Email from "@material-ui/icons/Mail";
 import Phone from "@material-ui/icons/Phone";
 import Home from "@material-ui/icons/Home";
-import Pdf from "@material-ui/icons/PictureAsPdf";
 import { ReactComponent as BitBucket } from "../../assets/bitbucket.svg";
 import { ReactComponent as UpWork } from "../../assets/upwork.svg";
 import { grey } from "@material-ui/core/colors";
-
+import Button from "../../components/UI/Button/Button";
+import firebase from "../../firebase";
 import ReactToPrint from "react-to-print";
 
 class DisplayPage extends Component {
   render() {
-    //const personalInfo = useSelector(state => state.personalInfo);
     return (
       <div className="area">
         {/* Personal Info Section */}
@@ -213,18 +212,60 @@ class DisplayPage extends Component {
 }
 
 class reactToPrint extends Component {
+  saveDataToCloud = () => {
+    console.log(this.props.curUser);
+
+    const db = firebase.firestore();
+    // db.settings({
+    //   timestampsInSnapshots: true
+    // });
+
+    const data = {
+      personalInfo: this.props.personalInfo,
+
+      education: [],
+
+      skills: {
+        areaOfInterese: "",
+        programmingLanguages: "",
+        toolsandTech: "",
+        preferedFieldofWork: ""
+      },
+
+      experience: [],
+
+      webLinks: {
+        linkedIn: "",
+        gitHub: "",
+        bitBucket: "",
+        upWork: ""
+      },
+
+      achievement: [],
+
+      hobbies: []
+    };
+
+    // Add a new document in collection "cities" with ID 'LA'
+    const res = db.collection("resumes").doc(this.props.curUser).set(data);
+  };
   render() {
     return (
       <div>
         <div className="printSection">
           <ReactToPrint
             trigger={() =>
-              <a href="#download" className="printButton">
-                <Pdf style={{ color: "#b71c1c", width: 20, height: 20 }} />
-                {"\tDownload PDF"}
+              //   <a href="#download" className="printButton">
+              //     <Pdf style={{ color: "#b71c1c", width: 20, height: 20 }} />
+              //     {"\tDownload PDF"}
+              //   </a>}
+              <a href="#download">
+                <Button type="pdf" />
               </a>}
             content={() => this.componentRef}
           />
+
+          <Button type="cloud" clicked={this.saveDataToCloud} />
         </div>
         <DisplayPage ref={el => (this.componentRef = el)} {...this.props} />
       </div>
@@ -234,7 +275,11 @@ class reactToPrint extends Component {
 
 const mapStateToProps = state => {
   return {
+    //current user
+    curUser: state.signedIn.email,
+
     //Personal Info
+    personalInfo: state.personalInfo,
     fullname: state.personalInfo.fullname,
     email: state.personalInfo.email,
     dob: state.personalInfo.dob,

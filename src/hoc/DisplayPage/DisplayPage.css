@@ -14,10 +14,11 @@
 }
 
 .section {
-  margin: 10px 50px;
+  margin: 8px 50px;
   padding-left: 10px;
   padding-right: 10px;
   padding-bottom: 10px;
+  padding-top: 10px;
   font-size: 16px;
   text-align: left;
 }

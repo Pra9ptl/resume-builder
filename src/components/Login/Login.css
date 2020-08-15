@@ -1,0 +1,53 @@
+.loginForm {
+  height: 100%;
+  /* overflow: hidden !important; */
+  background-image: url("../../assets/job-search.svg");
+  background-size: 60vw 60vh;
+  background-position: left;
+  background-repeat: no-repeat;
+  background-color: #c7eafa;
+}
+
+.btnLayout {
+  width: 60%;
+  height: 100%;
+  float: right;
+  justify-content: center;
+  display: flex;
+  /* You can change this to `row` if you want the items side by side instead of stacked */
+  flex-direction: column;
+}
+
+.appTitle {
+  margin-bottom: 80px;
+  font-size: 90px;
+  font-family: Georgia, serif;
+  text-shadow: 1px 1px 2px black, 0 0 1em blue, 0 0 0.2em #0d47a1;
+  color: white;
+}
+
+/* 
+.btnLogin {
+  width: 35%;
+  padding: 10px !important;
+  background-color: #ffebee !important;
+}
+
+.btnLogin:hover {
+  background-color: #ef9a9a !important;
+}
+
+.btnLogin:hover .btnLabel {
+    color: #fbe9e7;
+}
+
+.btnLabel {
+  color: #ef5350;
+  font-weight: bold;
+}
+
+.btnLogo {
+  margin-right: 8px;
+  height: 20px;
+  width: 20px;
+} */
