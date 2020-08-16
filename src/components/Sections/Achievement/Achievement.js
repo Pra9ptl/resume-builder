@@ -66,7 +66,7 @@ const Achievement = props => {
 
       {achievementState.filter(a => Boolean(a.achievementTitle)).length ===
         achievementState.length &&
-        <Button clicked={addAchievementItemHandler} type="add" />}
+        <Button click={addAchievementItemHandler} actiontype="add" />}
     </div>
   );
 };

@@ -8,7 +8,6 @@ const Websites = props => {
   const dispatch = useDispatch();
 
   const updateFieldValue = (field, value) => {
-    console.log(field, value);
     dispatch({ type: "UPDATE_WEBLINKS", payload: { field, value } });
   };
 

@@ -9,56 +9,68 @@ import Save from "@material-ui/icons/CloudUpload";
 import Signout from "@material-ui/icons/LocalGasStation";
 import "./Button.css";
 
-const inputField = React.memo(props => {
-  let btnTpye = "";
-  let btnColor = "";
+const InputField = props => {
+  let btnType = "";
   let btnText = "";
+  let btnStyle = {};
 
-  switch (props.type) {
+
+  switch (props.actiontype) {
     case "add":
       btnText = "Add";
-      btnColor = "primary";
-      btnTpye = <AddIcon style={{ padding: "10px !important" }} />;
+      btnStyle = {
+        color: "#2196f3",
+        backgroundColor: "#bbdefb"
+      };
+      btnType = <AddIcon style={{ padding: "10px !important" }} />;
       break;
     case "delete":
       btnText = "Delete";
-      btnColor = "delete";
-      btnTpye = <DeleteIcon style={{ padding: "10px !important" }} />;
+      btnStyle = {
+        color: "#607d8b",
+        backgroundColor: "#cfd8dc"
+      };
+      btnType = <DeleteIcon style={{ padding: "10px !important" }} />;
       break;
     case "save":
       btnText = "Save";
-      btnColor = "Secondary";
-      btnTpye = <SaveIcon style={{ padding: "10px !important" }} />;
+      btnStyle = {
+        color: "#4caf50",
+        backgroundColor: "#c8e6c9"
+      };
+      btnType = <SaveIcon style={{ padding: "10px !important" }} />;
       break;
     case "signOut":
       btnText = "Sign-out";
-      btnColor = "delete";
-      btnTpye = <Signout />;
+      btnStyle = {
+        color: "white",
+        backgroundColor: "blue"
+      };
+      btnType = <Signout />;
       break;
     case "pdf":
       btnText = "Download PDF";
-      btnColor = "Secondary";
-      btnTpye = <Pdf style={{ padding: "10px !important" }} />;
+      btnStyle = {
+        color: "#f44336",
+        backgroundColor: "#ffcdd2"
+      };
+      btnType = <Pdf style={{ padding: "10px !important" }} />;
       break;
     case "cloud":
       btnText = "Save to Cloud";
-      btnColor = "primary";
-      btnTpye = <Save style={{ padding: "10px !important" }} />;
+      btnStyle = {
+        color: "#3f51b5",
+        backgroundColor: "#c5cae9"
+      };
+      btnType = <Save style={{ padding: "10px !important" }} />;
       break;
     case "person":
-      btnColor = "primary";
-      btnTpye = (
-        <User
-          style={{
-            backgroundColor: "#4CAF50",
-            color: "white",
-            padding: "20px !important",
-            fontSize: "40",
-            border: "none",
-            cursor: "pointer"
-          }}
-        />
-      );
+      btnText = "";
+      btnStyle = {
+        color: "white",
+        backgroundColor: "#4CAF50"
+      };
+      btnType = <User />;
       break;
     default:
       break;
@@ -66,14 +78,14 @@ const inputField = React.memo(props => {
 
   return (
     <Button
-      onClick={props.clicked}
-      color={btnColor}
+      onClick={props.click}
+      style={btnStyle}
       className="button"
       {...props}
     >
-      {btnTpye} {btnText}
+      {btnType} {btnText}
     </Button>
   );
-});
+};
 
-export default inputField;
+export default InputField;

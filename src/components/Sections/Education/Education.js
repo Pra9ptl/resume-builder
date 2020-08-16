@@ -23,12 +23,13 @@ const Education = () => {
             <EducationItem
               title={education.deg_id}
               key={education.deg_id}
-              eduDetails={education}
+              edudetails={education}
             />
           );
         })}
-      {edu.filter(education => Boolean(education.degreeTitle)).length ===
-        edu.length && <Button clicked={addEducationItemHandler} type="add" />}
+
+      {edu.filter(e => Boolean(e.degreeTitle)).length === edu.length &&
+        <Button click={addEducationItemHandler} actiontype="add" />}
     </div>
   );
 };

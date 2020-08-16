@@ -6,15 +6,15 @@ import ExpansionPanel from "../../../../hoc/ExpansionPanel/ExpansionPanel";
 import MultiLinedField from "../../../UI/MultiLinedField/MultiLinedField";
 
 const ExpItem = props => {
-  const { title, expDetails } = props;
+  const { title, expdetails } = props;
 
-  const [companyName, setCompanyName] = useState(expDetails.companyName || "");
-  const [position, setPosition] = useState(expDetails.position || "");
+  const [companyName, setCompanyName] = useState(expdetails.companyName || "");
+  const [position, setPosition] = useState(expdetails.position || "");
   const [jobDescription, setJobDescription] = useState(
-    expDetails.jobDescription || ""
+    expdetails.jobDescription || ""
   );
-  const [startDate, setStartDate] = useState(expDetails.startDate || "");
-  const [endDate, setEndDate] = useState(expDetails.endDate || "");
+  const [startDate, setStartDate] = useState(expdetails.startDate || "");
+  const [endDate, setEndDate] = useState(expdetails.endDate || "");
 
   const dispatch = useDispatch();
 
@@ -101,10 +101,10 @@ const ExpItem = props => {
           shrink: true
         }}
       />
-      <Button type="save" clicked={updateExp} />
+      <Button actiontype="save" click={updateExp} />
       <Button
-        type="delete"
-        clicked={() =>
+        actiontype="delete"
+        click={() =>
           dispatch({
             type: "DELETE_EXPERIENCE_INFO",
             payload: title

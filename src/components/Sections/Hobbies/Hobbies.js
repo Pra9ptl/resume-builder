@@ -29,8 +29,6 @@ const Hobbies = props => {
   const updateHobbies = (hob, value) => {
     const newHobbies = [...hobbyState];
     newHobbies.forEach(h => {
-      console.log(hob);
-      console.log(h);
       if (h.hobbyId === hob.hobbyId) {
         //   h.hobbyId = hob.hobbyName;
         h.hobbyName = value;
@@ -51,7 +49,6 @@ const Hobbies = props => {
     <div>
       {Boolean(hobbyState) &&
         hobbyState.map(h => {
-          console.log(h);
           return (
             <InputField
               type="text"
@@ -68,7 +65,7 @@ const Hobbies = props => {
         })}
       {hobbyState.filter(h => Boolean(h.hobbyName)).length ===
         hobbyState.length &&
-        <Button clicked={addHobbiesItemHandler} type="add" />}
+        <Button click={addHobbiesItemHandler} actiontype="add" />}
     </div>
   );
 };

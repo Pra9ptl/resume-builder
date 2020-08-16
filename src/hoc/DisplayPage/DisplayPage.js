@@ -44,36 +44,36 @@ class DisplayPage extends Component {
         <div className="section">
           <div className="secTitle">WEB-LINKS</div>
           <div className="sectionContent">
-            {Boolean(this.props.linkedIn) &&
+            {Boolean(this.props.webLinks.linkedIn) &&
               <div>
-                <a href={this.props.linkedIn}>
+                <a href={this.props.webLinks.linkedIn}>
                   <LinkedInIcon
                     style={{ color: grey[900], width: 16, height: 16 }}
                   />
-                  {"\t" + this.props.linkedIn}
+                  {"\t" + this.props.webLinks.linkedIn}
                 </a>
               </div>}
-            {Boolean(this.props.gitHub) &&
+            {Boolean(this.props.webLinks.gitHub) &&
               <div>
-                <a href={this.props.gitHub}>
+                <a href={this.props.webLinks.gitHub}>
                   <GitHub style={{ color: grey[900], width: 16, height: 16 }} />
-                  {"\t" + this.props.gitHub}
+                  {"\t" + this.props.webLinks.gitHub}
                 </a>
               </div>}
-            {Boolean(this.props.bitBucket) &&
+            {Boolean(this.props.webLinks.bitBucket) &&
               <div>
-                <a href={this.props.bitBucket}>
+                <a href={this.props.webLinks.bitBucket}>
                   <BitBucket
                     style={{ color: grey[900], width: 16, height: 16 }}
                   />
-                  {"\t" + this.props.bitBucket}
+                  {"\t" + this.props.webLinks.bitBucket}
                 </a>
               </div>}
-            {Boolean(this.props.upWork) &&
+            {Boolean(this.props.webLinks.upWork) &&
               <div>
-                <a href={this.props.upWork}>
+                <a href={this.props.webLinks.upWork}>
                   <UpWork style={{ color: grey[900], width: 16, height: 16 }} />
-                  {"\t" + this.props.upWork}
+                  {"\t" + this.props.webLinks.upWork}
                 </a>
               </div>}
           </div>
@@ -143,10 +143,11 @@ class DisplayPage extends Component {
           <div className="secTitle">EDUCATION</div>
           <div className="sectionContent">
             {Boolean(this.props.educationList) &&
-              this.props.educationList.map(e => {
+              this.props.educationList.map((e, index) => {
                 return (
                   <EducationListDisplay
                     degreeTitle={e.degreeTitle}
+                    key={index}
                     college={e.college}
                     sYear={e.sYear}
                     eYear={e.eYear}
@@ -162,10 +163,11 @@ class DisplayPage extends Component {
           <div className="secTitle">EXPERIENCES</div>
           <div className="sectionContent">
             {Boolean(this.props.experiences) &&
-              this.props.experiences.map(ex => {
+              this.props.experiences.map((ex, index) => {
                 return (
                   <EducationListDisplay
                     degreeTitle={ex.companyName}
+                    key={index}
                     college={ex.position}
                     sYear={ex.startDate}
                     eYear={ex.endDate}
@@ -212,42 +214,36 @@ class DisplayPage extends Component {
 }
 
 class reactToPrint extends Component {
+  alertIsOpen = false;
+
   saveDataToCloud = () => {
-    console.log(this.props.curUser);
-
-    const db = firebase.firestore();
-    // db.settings({
-    //   timestampsInSnapshots: true
-    // });
-
     const data = {
       personalInfo: this.props.personalInfo,
 
-      education: [],
+      education: this.props.educationList,
 
-      skills: {
-        areaOfInterese: "",
-        programmingLanguages: "",
-        toolsandTech: "",
-        preferedFieldofWork: ""
-      },
+      skills: this.props.skills,
 
-      experience: [],
+      experience: this.props.experiences,
 
-      webLinks: {
-        linkedIn: "",
-        gitHub: "",
-        bitBucket: "",
-        upWork: ""
-      },
+      webLinks: this.props.webLinks,
 
-      achievement: [],
+      achievement: this.props.achievement,
 
-      hobbies: []
+      hobbies: this.props.hobbies
     };
 
-    // Add a new document in collection "cities" with ID 'LA'
-    const res = db.collection("resumes").doc(this.props.curUser).set(data);
+    const db = firebase.firestore();
+    db
+      .collection("resumes")
+      .doc(this.props.curUser)
+      .set(data)
+      .then(function() {
+        console.log("Document successfully written!");
+      })
+      .catch(function(error) {
+        console.error("Error writing document: ", error);
+      });
   };
   render() {
     return (
@@ -255,17 +251,13 @@ class reactToPrint extends Component {
         <div className="printSection">
           <ReactToPrint
             trigger={() =>
-              //   <a href="#download" className="printButton">
-              //     <Pdf style={{ color: "#b71c1c", width: 20, height: 20 }} />
-              //     {"\tDownload PDF"}
-              //   </a>}
               <a href="#download">
-                <Button type="pdf" />
+                <Button actiontype="pdf" />
               </a>}
             content={() => this.componentRef}
           />
 
-          <Button type="cloud" clicked={this.saveDataToCloud} />
+          <Button actiontype="cloud" click={this.saveDataToCloud} />
         </div>
         <DisplayPage ref={el => (this.componentRef = el)} {...this.props} />
       </div>
@@ -287,12 +279,14 @@ const mapStateToProps = state => {
     mobile: state.personalInfo.mobile,
 
     //Weblinks
+    webLinks: state.webLinks,
     linkedIn: state.webLinks.linkedIn,
     gitHub: state.webLinks.gitHub,
     bitBucket: state.webLinks.bitBucket,
     upWork: state.webLinks.upWork,
 
     //Skills
+    skills: state.skills,
     area: state.skills.areaOfInterese,
     program: state.skills.programmingLanguages,
     tools: state.skills.toolsandTech,

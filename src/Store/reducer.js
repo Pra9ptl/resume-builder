@@ -40,11 +40,59 @@ const resumeReducer = (state = initialState, action) => {
       return {
         ...state,
         signedIn: {
-            ...state.signedIn,
+          ...state.signedIn,
           [action.payload.field]: action.payload.value
         }
       };
 
+    case "GET_CLOUD_DATA":
+      return {
+        ...state,
+        personalInfo: action.payload.personalInfo,
+        education: action.payload.education,
+        skills: action.payload.skills,
+        experience: action.payload.experience,
+        webLinks: action.payload.webLinks,
+        achievement: action.payload.achievement,
+        hobbies: action.payload.hobbies
+      };
+
+    case "SIGN_OUT":
+      return {
+        signedIn: {
+          isSignedIn: false,
+          email: ""
+        },
+
+        personalInfo: {
+          fullname: "",
+          email: "",
+          address: "",
+          mobile: ""
+        },
+
+        education: [],
+
+        skills: {
+          areaOfInterese: "",
+          programmingLanguages: "",
+          toolsandTech: "",
+          preferedFieldofWork: ""
+        },
+
+        experience: [],
+
+        webLinks: {
+          linkedIn: "",
+          gitHub: "",
+          bitBucket: "",
+          upWork: ""
+        },
+
+        achievement: [],
+
+        hobbies: []
+      };
     case "UPDATE_PERSONAL_INFO":
       return {
         ...state,

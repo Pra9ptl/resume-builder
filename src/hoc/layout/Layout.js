@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
 import "./Layout.css";
 import ExpansionPanel from "../ExpansionPanel/ExpansionPanel";
 import PersonalInformation from "../../components/Sections/PersonalInformation/PersonalInformation";
@@ -8,13 +9,22 @@ import ProfessionalExp from "../../components/Sections/ProfessionalExp/Professio
 import Websites from "../../components/Sections/Websites/Websites";
 import Achievements from "../../components/Sections/Achievement/Achievement";
 import Hobbies from "../../components/Sections/Hobbies/Hobbies";
+import AccountCircle from "@material-ui/icons/AccountCircle";
+import ThreeSixtyIcon from "@material-ui/icons/ThreeSixty";
 import DisplayPage from "../DisplayPage/DisplayPage";
 import { ReactComponent as Logo } from "../../assets/logo.svg";
-import Button from "../../components/UI/Button/Button";
-import { useSelector } from "react-redux";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
+import IconButton from "@material-ui/core/IconButton";
+import MenuItem from "@material-ui/core/MenuItem";
+import Menu from "@material-ui/core/Menu";
+import firebase from "../../firebase";
 
 const Layout = () => {
   const user = useSelector(state => state.signedIn.email);
+
+  const dispatch = useDispatch();
   const panelList = [
     "Personal Information",
     "Online Contact Links",
@@ -24,27 +34,91 @@ const Layout = () => {
     "Achievements",
     "Intereset and Hobbies"
   ];
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+
+  const handleChange = () => {
+    dispatch({
+      type: "SIGN_OUT"
+    });
+  };
+
+  const handleMenu = event => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const db = firebase.firestore();
+
+  if (user !== "") {
+    const resumeRef = db.collection("resumes").doc(user);
+    resumeRef
+      .get()
+      .then(doc => {
+        if (doc.exists) {
+          dispatch({
+            type: "GET_CLOUD_DATA",
+            payload: doc.data()
+          })
+        } else {
+          // doc.data() will be undefined in this case
+          console.log("No such document!");
+        }
+      })
+      .catch(error => {
+        console.log("Error getting document:", error);
+      });
+  }
+
   return (
     <div className="Layout">
-      <div className="menu">
-        <div className="nav">
-          <Logo className="logo" />
-          <div className="user">
-            <div className="dropdown" style={{ float: "right" }}>
-              <Button type="person" />
-              <div className="dropdown-content">
-                <div className="dropDownItems">
-                  <div>
-                    {user}
-                  </div>
-                </div>
-                <div className="dropDownItems">
-                  <Button type="signOut" />
-                </div>
-              </div>
+      <div className="root">
+        <AppBar position="static">
+          <Toolbar>
+            <Logo className="logo" />
+            <Typography variant="h6" className="title">
+              Resume IT
+            </Typography>
+            <div>
+              <IconButton
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleMenu}
+                color="inherit"
+              >
+                <AccountCircle />
+              </IconButton>
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right"
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right"
+                }}
+                open={open}
+                onClose={handleClose}
+              >
+                <MenuItem onClick={handleClose}>
+                  <AccountCircle style={{ marginRight: "5px" }} />
+                  {user}
+                </MenuItem>
+                <MenuItem onClick={handleChange}>
+                  <ThreeSixtyIcon style={{ marginRight: "5px" }} />Sign Out
+                </MenuItem>
+              </Menu>
             </div>
-          </div>
-        </div>
+          </Toolbar>
+        </AppBar>
       </div>
       <div className="main">
         <div className="sideBar">

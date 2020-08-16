@@ -1,9 +1,11 @@
 .button {
-    width: 30% !important;
+    /* width: 50% !important;
     height: 100%;
     padding-left: 10px !important;
     padding-right: 10px !important;
     margin: 5px !important;
     text-decoration: none !important;
-    font-weight: unset !important;
+    font-weight: unset !important; */
+    width: 50% !important;
+    margin: 5px !important;
 }

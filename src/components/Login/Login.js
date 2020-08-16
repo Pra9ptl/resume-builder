@@ -1,26 +1,21 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import "./Login.css";
 import GoogleLogin from "react-google-login";
+import "./Login.css";
 import "animate.css";
 
 const Login = () => {
   const dispatch = useDispatch();
 
   const updateFieldValue = (field, value) => {
-    console.log(field, value);
     dispatch({ type: "UPDATE_SIGNED_IN_STATUS", payload: { field, value } });
   };
 
   const responseGoogle = response => {
-    console.log(response);
-    console.log(response.profileObj);
-
     if (response.profileObj !== null) {
       updateFieldValue("isSignedIn", true);
       updateFieldValue("email", response.profileObj.email);
     }
-    //console.log(login);
   };
 
   return (

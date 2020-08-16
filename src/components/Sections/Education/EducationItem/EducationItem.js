@@ -2,17 +2,17 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import InputField from "../../../UI/InputField/InputField";
 import Button from "../../../UI/Button/Button";
-import MultiLinedField from "../../../UI/MultiLinedField/MultiLinedField"
+import MultiLinedField from "../../../UI/MultiLinedField/MultiLinedField";
 import ExpansionPanel from "../../../../hoc/ExpansionPanel/ExpansionPanel";
 
 const EducationItem = props => {
-  const { title, eduDetails } = props;
+  const { title, edudetails } = props;
 
-  const [degreeTitle, setDegreeTitle] = useState(eduDetails.degreeTitle || "");
-  const [college, setCollege] = useState(eduDetails.college || "");
-  const [sYear, setSYear] = useState(eduDetails.sYear || "");
-  const [eYear, setEYEAR] = useState(eduDetails.eYear || "");
-  const [learnings, setlearnings] = useState(eduDetails.learnings || "");
+  const [degreeTitle, setDegreeTitle] = useState(edudetails.degreeTitle || "");
+  const [college, setCollege] = useState(edudetails.college || "");
+  const [sYear, setSYear] = useState(edudetails.sYear || "");
+  const [eYear, setEYEAR] = useState(edudetails.eYear || "");
+  const [learnings, setlearnings] = useState(edudetails.learnings || "");
 
   const dispatch = useDispatch();
 
@@ -100,10 +100,10 @@ const EducationItem = props => {
         {...props}
       />
 
-      <Button type="save" clicked={updateEducation} />
+      <Button actiontype="save" click={updateEducation} />
       <Button
-        type="delete"
-        clicked={() =>
+        actiontype="delete"
+        click={() =>
           dispatch({
             type: "DELETE_EDUCATION_INFO",
             payload: title
