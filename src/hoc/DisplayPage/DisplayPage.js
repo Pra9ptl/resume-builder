@@ -11,7 +11,6 @@ import { ReactComponent as BitBucket } from "../../assets/bitbucket.svg";
 import { ReactComponent as UpWork } from "../../assets/upwork.svg";
 import { grey } from "@material-ui/core/colors";
 import Button from "../../components/UI/Button/Button";
-import firebase from "../../firebase";
 import ReactToPrint from "react-to-print";
 
 class DisplayPage extends Component {
@@ -214,37 +213,7 @@ class DisplayPage extends Component {
 }
 
 class reactToPrint extends Component {
-  alertIsOpen = false;
-
-  saveDataToCloud = () => {
-    const data = {
-      personalInfo: this.props.personalInfo,
-
-      education: this.props.educationList,
-
-      skills: this.props.skills,
-
-      experience: this.props.experiences,
-
-      webLinks: this.props.webLinks,
-
-      achievement: this.props.achievement,
-
-      hobbies: this.props.hobbies
-    };
-
-    const db = firebase.firestore();
-    db
-      .collection("resumes")
-      .doc(this.props.curUser)
-      .set(data)
-      .then(function() {
-        console.log("Document successfully written!");
-      })
-      .catch(function(error) {
-        console.error("Error writing document: ", error);
-      });
-  };
+  
   render() {
     return (
       <div>

@@ -21,7 +21,7 @@ const Login = () => {
   return (
     <div className="loginForm">
       <div className="btnLayout">
-        <label className="appTitle animate__animated animate__pulse" >Resume IT</label>
+        <label className="appTitle" >Resume IT</label>
         <div>
           <GoogleLogin
             clientId="31284359444-3t4tk7p9ei6chbaubj3jrue716dv02po.apps.googleusercontent.com"
@@ -29,6 +29,7 @@ const Login = () => {
             onSuccess={responseGoogle}
             onFailure={responseGoogle}
             cookiePolicy={"single_host_origin"}
+            className="btnGoogle"
           />
         </div>
       </div>

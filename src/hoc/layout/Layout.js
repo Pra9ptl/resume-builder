@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./Layout.css";
 import ExpansionPanel from "../ExpansionPanel/ExpansionPanel";
@@ -10,6 +10,7 @@ import Websites from "../../components/Sections/Websites/Websites";
 import Achievements from "../../components/Sections/Achievement/Achievement";
 import Hobbies from "../../components/Sections/Hobbies/Hobbies";
 import AccountCircle from "@material-ui/icons/AccountCircle";
+import CloudUpload from "@material-ui/icons/CloudUpload";
 import ThreeSixtyIcon from "@material-ui/icons/ThreeSixty";
 import DisplayPage from "../DisplayPage/DisplayPage";
 import { ReactComponent as Logo } from "../../assets/logo.svg";
@@ -23,6 +24,14 @@ import firebase from "../../firebase";
 
 const Layout = () => {
   const user = useSelector(state => state.signedIn.email);
+  const personalInfo = useSelector(state => state.personalInfo);
+  const education = useSelector(state => state.education);
+  const skills = useSelector(state => state.skills);
+  const experience = useSelector(state => state.experience);
+  const webLinks = useSelector(state => state.webLinks);
+  const achievement = useSelector(state => state.achievement);
+  const hobbies = useSelector(state => state.hobbies);
+  console.log(personalInfo);
 
   const dispatch = useDispatch();
   const panelList = [
@@ -54,25 +63,62 @@ const Layout = () => {
 
   const db = firebase.firestore();
 
-  if (user !== "") {
-    const resumeRef = db.collection("resumes").doc(user);
-    resumeRef
-      .get()
-      .then(doc => {
-        if (doc.exists) {
-          dispatch({
-            type: "GET_CLOUD_DATA",
-            payload: doc.data()
+  useEffect(
+    () => {
+      if (user !== "") {
+        console.log("hii.....");
+
+        const resumeRef = db.collection("resumes").doc(user);
+        resumeRef
+          .get()
+          .then(doc => {
+            if (doc.exists) {
+              dispatch({
+                type: "GET_CLOUD_DATA",
+                payload: doc.data()
+              });
+            } else {
+              // doc.data() will be undefined in this case
+              console.log("No such document!");
+            }
           })
-        } else {
-          // doc.data() will be undefined in this case
-          console.log("No such document!");
-        }
+          .catch(error => {
+            console.log("Error getting document:", error);
+          });
+      }
+    },
+    [user]
+  );
+
+  const saveDataToCloud = () => {
+    const data = {
+      personalInfo: personalInfo,
+
+      education: education,
+
+      skills: skills,
+
+      experience: experience,
+
+      webLinks: webLinks,
+
+      achievement: achievement,
+
+      hobbies: hobbies
+    };
+
+    // const db = firebase.firestore();
+    db
+      .collection("resumes")
+      .doc(user)
+      .set(data)
+      .then(function() {
+        console.log("Document successfully written!");
       })
-      .catch(error => {
-        console.log("Error getting document:", error);
+      .catch(function(error) {
+        console.error("Error writing document: ", error);
       });
-  }
+  };
 
   return (
     <div className="Layout">
@@ -83,6 +129,17 @@ const Layout = () => {
             <Typography variant="h6" className="title">
               Resume IT
             </Typography>
+            <div>
+              <IconButton
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={saveDataToCloud}
+                color="inherit"
+              >
+                <CloudUpload />
+              </IconButton>
+            </div>
             <div>
               <IconButton
                 aria-label="account of current user"
