@@ -114,6 +114,7 @@ const Layout = () => {
       .set(data)
       .then(function() {
         console.log("Document successfully written!");
+        window.alert("Data saved to cloud.");
       })
       .catch(function(error) {
         console.error("Error writing document: ", error);

@@ -225,8 +225,6 @@ class reactToPrint extends Component {
               </a>}
             content={() => this.componentRef}
           />
-
-          <Button actiontype="cloud" click={this.saveDataToCloud} />
         </div>
         <DisplayPage ref={el => (this.componentRef = el)} {...this.props} />
       </div>

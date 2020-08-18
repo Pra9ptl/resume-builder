@@ -7,7 +7,7 @@ import Login from "./components/Login/Login";
 function App() {
   const login = useSelector(state => state.signedIn);
 
-  return login.isSignedIn
+  return (login.isSignedIn === true && login.email !== "")
     ? <div className="App">
         <Layout />
       </div>
