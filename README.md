@@ -1,3 +1,13 @@
+The reason behind working on this project was to practice my skills on react, react-redux, firestore.
+
+There are 2 components in the app: Login and Layout.
+Login Component displays you a button for logging into the app with google, which store the email id which I get in response from google.
+I use that email id for data management as per users and save there data in the collection of the firestore.
+You can also download .pdf of the generated resume.
+Download .pdf option is only available in laptop or desktop screen size not in mobile version for now.
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
