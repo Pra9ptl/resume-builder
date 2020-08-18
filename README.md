@@ -1,5 +1,7 @@
 The reason behind working on this project was to practice my skills on react, react-redux, firestore.
 
+Preview the project here: https://confident-mayer-dad168.netlify.app/
+
 There are 2 components in the app: Login and Layout.
 Login Component displays you a button for logging into the app with google, which store the email id which I get in response from google.
 I use that email id for data management as per users and save there data in the collection of the firestore.
